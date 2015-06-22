@@ -48,7 +48,7 @@ describe('Traveller', function() {
         var traveller = new Traveller(rates);
         var transformedReceipt = traveller.addRandsValue(receiptFromSwaziland);
 
-        expect(transformedReceipt.valueInRands).to.eql(50);
+        expect(transformedReceipt.valueInRands).to.be(50);
       });
     });
 
@@ -57,12 +57,17 @@ describe('Traveller', function() {
         {
           city: 'Mbabane',
           currency: 'Lilangeni',
-          value: '50'
+          value: 50
         },
         {
           city: 'Mbabane',
           currency: 'Lilangeni',
-          value: '70'
+          value: 70
+        },
+        {
+          city: 'Uganda',
+          currency: 'Shilling',
+          value: 100000
         }
       ];
 

@@ -11,7 +11,7 @@ function Traveller(exchangeRates) {
 
     addRandsValue: function(bill) {
       var selectedRate = rates[bill.currency];
-      return _.extend(bill, {valueInRands: (bill.value * selectedRate).toPrecision(2) });
+      return _.extend(bill, {valueInRands: parseFloat((bill.value * selectedRate).toPrecision(2)) });
     },
 
     mapToRands: function(bills) {
