@@ -26,14 +26,14 @@ describe('Traveller', function() {
       var receiptFromKampala = {
         city: 'Uganda',
         currency: 'Shilling',
-        value: '10000'
+        value: 100000
       };
 
       it('calculates the value in Rands', function() {
         var traveller = new Traveller(rates);
         var transformedReceipt = traveller.addRandsValue(receiptFromKampala);
 
-        expect(transformedReceipt.valueInRands).to.eql(3);
+        expect(transformedReceipt.valueInRands).to.be(30);
       });
     });
 
@@ -52,7 +52,7 @@ describe('Traveller', function() {
       });
     });
 
-    describe('collection of receipts', function() {
+    describe('collection of receipts from outside ZA', function() {
       var receipts = [
         {
           city: 'Mbabane',
@@ -75,22 +75,62 @@ describe('Traveller', function() {
         var traveller = new Traveller(rates);
         var receiptsWithRandValues = traveller.mapToRands(receipts);
 
-        expect(receiptsWithRandValues[0].valueInRands).to.eql(50);
-        expect(receiptsWithRandValues[1].valueInRands).to.eql(70);
+        expect(receiptsWithRandValues[0].valueInRands).to.be(50);
+        expect(receiptsWithRandValues[1].valueInRands).to.be(70);
+        expect(receiptsWithRandValues[2].valueInRands).to.be(30);
+      });
+
+    });
+
+    describe('with a collection of receipts with Rand values', function() {
+      var receipts = [
+        { valueInRands: 50 },
+        { valueInRands: 70 }
+      ];
+
+      it('sums all values', function() {
+        var traveller = new Traveller();
+
+        expect(traveller.sumValues(receipts)).to.be(120);
       });
     });
-  });
 
-  describe('with a collection of receipts with Rand values', function() {
-    var receipts = [
-      { valueInRands: 50 },
-      { valueInRands: 70 }
-    ];
+    describe('having the currencies convertion rates', function() {
+      var convertionRates = {
+        'Shilling': 0.0003,
+        'Lilangeni': 1
+      };
 
-    it('sums all values', function() {
-      var traveller = new Traveller();
+      describe('with receipts from all over the places', function() {
+        var receipts = [
+          {
+            city: 'Mbabane',
+            currency: 'Lilangeni',
+            value: 50
+          },
+          {
+            city: 'Johannesburg',
+            currency: 'Rands',
+            value: 32
+          },
+          {
+            city: 'Mbabane',
+            currency: 'Lilangeni',
+            value: 70
+          },
+          {
+            city: 'Uganda',
+            currency: 'Shilling',
+            value: 100000
+          }
+        ];
 
-      expect(traveller.sumValues(receipts)).to.be(120);
+        it('converts to rands and sum all values excluding ZA', function() {
+          var traveller = new Traveller(convertionRates);
+
+          expect(traveller.costOfTrip(receipts)).to.be(150);
+        });
+      });
     });
   });
 });

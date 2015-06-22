@@ -20,6 +20,12 @@ function Traveller(exchangeRates) {
 
     sumValues: function(bills) {
       return _.reduce(bills, function(accumulator, bill) { return accumulator + bill.valueInRands }, 0);
+    },
+
+    costOfTrip: function(bills) {
+      return this.sumValues(
+               this.mapToRands(
+                 this.filterBills(bills)));
     }
   }
 }
