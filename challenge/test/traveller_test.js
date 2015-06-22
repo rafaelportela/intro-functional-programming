@@ -51,5 +51,41 @@ describe('Traveller', function() {
         expect(transformedReceipt.valueInRands).to.eql(50);
       });
     });
+
+    describe('collection of receipts', function() {
+      var receipts = [
+        {
+          city: 'Mbabane',
+          currency: 'Lilangeni',
+          value: '50'
+        },
+        {
+          city: 'Mbabane',
+          currency: 'Lilangeni',
+          value: '70'
+        }
+      ];
+
+      it('adds values in Rands to all', function() {
+        var traveller = new Traveller(rates);
+        var receiptsWithRandValues = traveller.mapToRands(receipts);
+
+        expect(receiptsWithRandValues[0].valueInRands).to.eql(50);
+        expect(receiptsWithRandValues[1].valueInRands).to.eql(70);
+      });
+    });
+  });
+
+  describe('with a collection of receipts with Rand values', function() {
+    var receipts = [
+      { valueInRands: 50 },
+      { valueInRands: 70 }
+    ];
+
+    it('sums all values', function() {
+      var traveller = new Traveller();
+
+      expect(traveller.sumValues(receipts)).to.be(120);
+    });
   });
 });
