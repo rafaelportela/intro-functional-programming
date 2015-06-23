@@ -1,4 +1,4 @@
-#Intro to Functional Programming for OO programers
+#Intro to Functional Programming for OO programmers
 
 You should have node.js installed to run the following commands.
 
@@ -15,8 +15,8 @@ mocha challenge/test
 
 ## Map, reduce and filter
 
-There are simple examples (steps 1 to 3) related to this functions, 
-comparing approaches using imperative and function paradigms.
+There are simple examples (steps 1 to 3) related to these functions, 
+comparing approaches using both imperative and functional paradigms.
 
 ## Traveller challenge
 
@@ -24,17 +24,17 @@ One of the first challenges of OO programmers studing the functional paradigm is
 related to modeling problems and solutions without using variables and for loops.
 The intent here is to write a program following an functional approach.
 
-Can you Write a program to help my dear friend?
+Can you write a program to help my dear friend?
 
 A friend of mine, after living for quite a while in Johannesburg, South Africa,
 went on a trip visiting different African countries. At the end of the trip, with
-lots of receipts and bill of things bought during the trip, she would like to
+lots of receipts and bills of things bought during the trip, she would like to
 know how much she has spent in total. Since she was living in Joburg, she is
-just interested on the cost of the trip in the countries excluding South Africa.
+just interested on the cost of the trip from the countries excluding South Africa.
 
-She also want to know the total cost in the South African currency, Rands.
+She also wants to know the total cost in the South African currency, Rands.
 One ZA rand is equivalent to 0.0003 Ugandan Shillings, and one Swazi Lilangeni is
-one Rand (are equivalents, same proportion).A
+one Rand (are equivalents, same proportion).
 
 Consider the receipts on the following format:
 
