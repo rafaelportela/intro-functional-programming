@@ -2,19 +2,17 @@ var _ = require('underscore');
 
 function Traveller(exchangeRates) {
 
-  var convertWithRates = function(rates) {
-    return function(bill) {
-      var selectedRate = rates[bill.currency];
-      return _.extend(bill, {valueInRands: parseFloat((bill.value * selectedRate).toPrecision(2)) });
-    }
-  }
+  var rates = exchangeRates;
 
   return {
     filterBills: function(bills) {
       return _.filter(bills, function(bill) { return bill.city !== 'Johannesburg' });
     },
 
-    addRandsValue: convertWithRates(exchangeRates),
+    addRandsValue: function(bill) {
+      var selectedRate = rates[bill.currency];
+      return _.extend(bill, {valueInRands: parseFloat((bill.value * selectedRate).toPrecision(2)) });
+    },
 
     mapToRands: function(bills) {
       return _.map(bills, this.addRandsValue);
