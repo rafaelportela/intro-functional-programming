@@ -1,6 +1,5 @@
 (ns traveller.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defn filter-bills
+  [bills]
+  (filter #(not= (:city %) "Johannesburg") bills))
