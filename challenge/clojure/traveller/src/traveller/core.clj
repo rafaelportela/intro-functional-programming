@@ -23,3 +23,7 @@
 (defn add-rands-key-value
   [convertion-rates]
   (fn [bill] (add-rands-value bill (rands-value bill convertion-rates))))
+
+(defn add-rands-to-bills
+  [convertion-rates bills]
+  (map (add-rands-key-value convertion-rates) bills))
