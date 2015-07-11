@@ -44,3 +44,13 @@
           convertion-rates {:shilling 0.0003}
           bills [{:currency "shilling" :value 100000}]]
     (is (= (add-rands-to-bills convertion-rates  bills) [{:currency "shilling" :value 100000 :rands-value 30}])))))
+
+(deftest accumulate-total-test
+  (testing "Accumulate total values"
+    (is (= (accumulate-total 20 {:rands-value 12}) 32))))
+
+(deftest sum-rands-values
+  (testing "Sum all rands values of bills"
+    (let [
+          bills [{:rands-value 10} {:rands-value 20} {:rands-value 30}]]
+      (is (= (sum bills) 60)))))

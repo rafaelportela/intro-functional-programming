@@ -27,3 +27,11 @@
 (defn add-rands-to-bills
   [convertion-rates bills]
   (map (add-rands-key-value convertion-rates) bills))
+
+(defn accumulate-total
+  [total bill]
+  (+ total (:rands-value bill)))
+
+(defn sum
+  [bills]
+  (reduce accumulate-total 0 bills))
