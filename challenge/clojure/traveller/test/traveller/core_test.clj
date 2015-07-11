@@ -29,3 +29,11 @@
           rands 30
           bill {:currency "shilling" :value 100000}]
       (is (= (add-rands-value bill rands) {:currency "shilling" :value 100000 :rands-value 30})))))
+
+(deftest convert-and-add-rands-key-to-bill
+  (testing "Convert to rands value and add key to bill"
+  (let [
+          convertion-rates {:shilling 0.0003}
+          bill {:currency "shilling" :value 100000}
+          add-rands-key (add-rands-key-value convertion-rates)]
+    (is (= (add-rands-key bill) {:currency "shilling" :value 100000 :rands-value 30})))))

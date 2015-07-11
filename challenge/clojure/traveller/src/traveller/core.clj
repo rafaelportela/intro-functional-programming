@@ -19,3 +19,7 @@
 (defn add-rands-value
   [bill rands]
   (assoc bill :rands-value rands))
+
+(defn add-rands-key-value
+  [convertion-rates]
+  (fn [bill] (add-rands-value bill (rands-value bill convertion-rates))))
