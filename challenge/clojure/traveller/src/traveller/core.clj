@@ -15,3 +15,7 @@
 (defn rands-value
   [bill convertion-rates]
   (Math/round (convert (:value bill) (select (:currency bill) convertion-rates))))
+
+(defn add-rands-value
+  [bill rands]
+  (assoc bill :rands-value rands))
