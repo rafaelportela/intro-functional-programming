@@ -35,3 +35,7 @@
 (defn sum
   [bills]
   (reduce accumulate-total 0 bills))
+
+(defn cost-of-trip
+  [convertion-rates bills]
+  (sum (add-rands-to-bills convertion-rates (filter-bills bills))))

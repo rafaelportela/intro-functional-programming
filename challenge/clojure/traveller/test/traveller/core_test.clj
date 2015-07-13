@@ -54,3 +54,22 @@
     (let [
           bills [{:rands-value 10} {:rands-value 20} {:rands-value 30}]]
       (is (= (sum bills) 60)))))
+
+(deftest traveller-process-all-bills
+  (testing "Filter, convert to rands and sum totals"
+    (let [
+          convertion-rates {:shilling 0.0003 :lilangeni 1.0}
+          receipts [
+                    {:city "Mbabane"
+                     :currency "lilangeni"
+                     :value 50}
+                    {:city "Johannesburg"
+                     :currency "rand"
+                     :value 32}
+                    {:city "Mbabane"
+                     :currency "lilangeni"
+                     :value 70}
+                    {:city "Uganda"
+                     :currency "shilling"
+                     :value 100000}]]
+      (is (= (cost-of-trip convertion-rates receipts) 150)))))
